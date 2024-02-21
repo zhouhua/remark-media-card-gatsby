@@ -7,4 +7,4 @@ const plugin = ({markdownAST}: {markdownAST: Root}) => {
   return markdownAST;
 };
 
-export default plugin;
+export = plugin;

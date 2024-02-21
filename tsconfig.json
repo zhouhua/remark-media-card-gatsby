@@ -2,6 +2,8 @@
   "extends": "@tsconfig/node20/tsconfig.json",
   "compilerOptions": {
     "lib": ["DOM", "ES2020"],
+    "module": "CommonJS",
+    "moduleResolution": "Node",
     "baseUrl": ".",
     "allowUnusedLabels": false,
     "allowUnreachableCode": false,
@@ -12,7 +14,6 @@
     "forceConsistentCasingInFileNames": true,
     "declaration": true,
     "sourceMap": true,
-    "resolveJsonModule": true,
     "isolatedModules": true
   },
   "include": ["**/*.ts"],
