@@ -5,15 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
-  '@triskel/tinyhtml':
-    specifier: ^1.1.0
-    version: 1.1.0
-  unist-util-visit:
-    specifier: ^5.0.0
-    version: 5.0.0
-  yaml:
-    specifier: ^2.3.4
-    version: 2.3.4
+  '@zhouhua-dev/remark-media-card':
+    specifier: ^1.0.3
+    version: 1.0.3
 
 devDependencies:
   '@testing-library/dom':
@@ -1103,6 +1097,14 @@ packages:
   /@xtuc/long@4.2.2:
     resolution: {integrity: sha512-NuHqBY1PB/D8xU6s/thBgOAiAP7HOYDQ32+BFZILJ8ivkUkAHQnWfn6WhL79Owj1qmUnoN/YPhktdIoucipkAQ==}
     dev: true
+
+  /@zhouhua-dev/remark-media-card@1.0.3:
+    resolution: {integrity: sha512-gLjK2A2oobiGWaoRsAdoJTK0E58JtSFDn8ItJXPt+V+xUDBNmAAMktlQEu3nYc08EF9BQm+0MzkQKq2tSjKWWQ==}
+    dependencies:
+      '@triskel/tinyhtml': 1.1.0
+      unist-util-visit: 5.0.0
+      yaml: 2.3.4
+    dev: false
 
   /abbrev@2.0.0:
     resolution: {integrity: sha512-6/mh1E2u2YgEsCHdY0Yx5oW+61gZU+1vXaoiHHrpKeuRNNgFvS+/jrwHiQhB5apAf5oB7UB7E19ol2R2LKH8hQ==}

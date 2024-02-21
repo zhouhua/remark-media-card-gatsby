@@ -1,108 +1,18 @@
 import {describe, it, expect} from 'vitest';
 import {remark} from 'remark';
 import {queryByText} from '@testing-library/dom';
-import remarkMediaCard from '../index.js';
+import type {Root} from 'mdast';
+import {gatsbyRemarkPlugin} from '../index.js';
 
-function formatMd(md: string) {
-  return md.replace(/^\s+|\s+$/m, '');
-}
+const makeAST = (md: string) => {
+  return remark.parse(md);
+};
 
-describe('remark-media-card', () => {
-  it('should work', async () => {
-    expect(
-      formatMd(
-        String(
-          await remark()
-            .use(remarkMediaCard)
-            .process(
-              [
-                '```media-card',
-                'cover: https://www.baidu.com',
-                'title: aaa',
-                'type: book',
-                '```',
-              ].join('\n'),
-            ),
-        ),
-      ),
-    ).toMatch('<div class="media-card"');
+const makeHtml = (ast: Root) => {
+  return remark.stringify(ast);
+};
 
-    expect(
-      formatMd(
-        String(
-          await remark()
-            .use(remarkMediaCard)
-            .process(
-              ['```media-card', 'url / https://www.baidu.com', '```'].join(
-                '\n',
-              ),
-            ),
-        ),
-      ),
-    ).toEqual(
-      ['```media-card', 'url / https://www.baidu.com', '```'].join('\n'),
-    );
-
-    expect(
-      formatMd(
-        String(
-          await remark()
-            .use(remarkMediaCard)
-            .process(['```media-card', '---', '```'].join('\n')),
-        ),
-      ),
-    ).toEqual(['```media-card', '---', '```'].join('\n'));
-
-    expect(
-      formatMd(
-        String(
-          await remark()
-            .use(remarkMediaCard)
-            .process(
-              ['```media-card', 'cover: 1.jpg', 'type: book', '```'].join('\n'),
-            ),
-        ),
-      ),
-    ).toEqual(
-      ['```media-card', 'cover: 1.jpg', 'type: book', '```'].join('\n'),
-    );
-
-    expect(
-      formatMd(
-        String(
-          await remark()
-            .use(remarkMediaCard)
-            .process(
-              ['```media-card', 'title: 1', 'type: book', '```'].join('\n'),
-            ),
-        ),
-      ),
-    ).toEqual(['```media-card', 'title: 1', 'type: book', '```'].join('\n'));
-
-    expect(
-      formatMd(
-        String(
-          await remark()
-            .use(remarkMediaCard)
-            .process(
-              ['```media-card', 'cover: 1.jpg', 'title: 1', '```'].join('\n'),
-            ),
-        ),
-      ),
-    ).toEqual(['```media-card', 'cover: 1.jpg', 'title: 1', '```'].join('\n'));
-  });
-
-  it('should work without media card', async () => {
-    expect(
-      formatMd(
-        String(
-          await remark()
-            .use(remarkMediaCard)
-            .process(['```java', 'abc', '```'].join('\n')),
-        ),
-      ),
-    ).toBe(['```java', 'abc', '```'].join('\n').trim());
-  });
+describe('gatsby-remark-plugin', () => {
   it('should work with parameters', async () => {
     const testParameters = [
       'url: http://baidu.com',
@@ -117,10 +27,9 @@ describe('remark-media-card', () => {
       'introduction: test introduction',
       'width: 300',
     ];
-    const bookHtml = String(
-      await remark()
-        .use(remarkMediaCard)
-        .process(
+    const bookHtml = makeHtml(
+      gatsbyRemarkPlugin({
+        markdownAST: makeAST(
           [
             '```media-card',
             ...testParameters,
@@ -129,7 +38,9 @@ describe('remark-media-card', () => {
             '```',
           ].join('\n'),
         ),
+      }),
     );
+    console.log(bookHtml);
     const bookDiv = document.createElement('div');
     bookDiv.innerHTML = bookHtml;
     expect(queryByText(bookDiv, 'test title')).toBeTruthy();
@@ -146,12 +57,12 @@ describe('remark-media-card', () => {
     ).toBe('./1.jpg');
     expect(bookDiv.querySelector('a')).toBeTruthy();
 
-    const musicHtml = String(
-      await remark()
-        .use(remarkMediaCard)
-        .process(
+    const musicHtml = makeHtml(
+      gatsbyRemarkPlugin({
+        markdownAST: makeAST(
           ['```media-card', ...testParameters, 'type: music', '```'].join('\n'),
         ),
+      }),
     );
     const musicDiv = document.createElement('div');
     musicDiv.innerHTML = musicHtml;
@@ -162,12 +73,12 @@ describe('remark-media-card', () => {
     expect(queryByText(musicDiv, '导演：test director')).toBeFalsy();
     expect(queryByText(musicDiv, '主演：test actors')).toBeFalsy();
 
-    const movieHtml = String(
-      await remark()
-        .use(remarkMediaCard)
-        .process(
+    const movieHtml = makeHtml(
+      gatsbyRemarkPlugin({
+        markdownAST: makeAST(
           ['```media-card', ...testParameters, 'type: movie', '```'].join('\n'),
         ),
+      }),
     );
     const movieDiv = document.createElement('div');
     movieDiv.innerHTML = movieHtml;
@@ -177,25 +88,5 @@ describe('remark-media-card', () => {
     expect(queryByText(movieDiv, '艺术家：test artist')).toBeFalsy();
     expect(queryByText(movieDiv, '导演：test director')).toBeTruthy();
     expect(queryByText(movieDiv, '主演：test actors')).toBeTruthy();
-  });
-  it('should work without introduction', async () => {
-    const html = String(
-      await remark()
-        .use(remarkMediaCard)
-        .process(['```media-card', 'type: book', '```'].join('\n')),
-    );
-    const div = document.createElement('div');
-    div.innerHTML = html;
-    expect(div.querySelector('.media-card-introduction')).toBeFalsy();
-  });
-  it('should work without url', async () => {
-    const html = String(
-      await remark()
-        .use(remarkMediaCard)
-        .process(['```media-card', 'type: book', '```'].join('\n')),
-    );
-    const div = document.createElement('div');
-    div.innerHTML = html;
-    expect(div.querySelector('a')).toBeFalsy();
   });
 });
