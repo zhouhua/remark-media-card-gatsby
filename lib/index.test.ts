@@ -2,7 +2,7 @@ import {describe, it, expect} from 'vitest';
 import {remark} from 'remark';
 import {queryByText} from '@testing-library/dom';
 import type {Root} from 'mdast';
-import {gatsbyRemarkPlugin} from '../index.js';
+import gatsbyRemarkPlugin from '../index.js';
 
 const makeAST = (md: string) => {
   return remark.parse(md);
@@ -40,7 +40,6 @@ describe('gatsby-remark-plugin', () => {
         ),
       }),
     );
-    console.log(bookHtml);
     const bookDiv = document.createElement('div');
     bookDiv.innerHTML = bookHtml;
     expect(queryByText(bookDiv, 'test title')).toBeTruthy();
