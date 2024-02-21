@@ -1,6 +1,6 @@
 {
   "name": "@zhouhua-dev/remark-media-card-gatsby",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "",
   "license": "MIT",
   "keywords": [
@@ -12,8 +12,7 @@
   ],
   "author": "zhou--hua@163.com",
   "sideEffects": false,
-  "type": "module",
-  "exports": "./dist/index.js",
+  "type": "commonjs",
   "files": [
     "dist/",
     "lib/",
@@ -30,6 +29,7 @@
     "@types/unist": "^3.0.2",
     "@vitest/coverage-v8": "^1.3.1",
     "@vitest/ui": "^1.3.1",
+    "esbuild": "^0.20.1",
     "jsdom": "^24.0.0",
     "prettier": "^3.2.5",
     "remark": "^15.0.1",
@@ -43,7 +43,7 @@
   },
   "scripts": {
     "clean": "rimraf dist",
-    "build": "tsc --project tsconfig.build.json & type-coverage",
+    "build": "esbuild index.ts --bundle --outdir=dist --platform=node & type-coverage",
     "format": "prettier . --log-level warn --write && xo --fix",
     "prepack": "pnpm run build && pnpm run format",
     "test": "vitest",
