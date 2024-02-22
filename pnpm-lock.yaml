@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@zhouhua-dev/remark-media-card':
-    specifier: ^1.0.7
-    version: 1.0.7
+    specifier: ^1.1.0
+    version: 1.1.0
 
 devDependencies:
   '@testing-library/dom':
@@ -1766,10 +1766,10 @@ packages:
       }
     dev: true
 
-  /@zhouhua-dev/remark-media-card@1.0.7:
+  /@zhouhua-dev/remark-media-card@1.1.0:
     resolution:
       {
-        integrity: sha512-BvIrmqESizjvzQHS/afhHmo/9bm0L7LpS7Cfr3ERW2QTcFFdNm0Q8O8GJqI7l8+YqJuS1QvuqtIOJcPwNV26Gg==,
+        integrity: sha512-+cA2c4i9rnDoz5KtXucK5l/bWzdTNVP/WTEYk4XoONfByloHVVcFPSY9gSPGmbEeIGbtOou+eU59yOb0zRoGiQ==,
       }
     dependencies:
       '@triskel/tinyhtml': 1.1.0

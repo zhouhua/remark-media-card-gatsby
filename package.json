@@ -1,6 +1,6 @@
 {
   "name": "@zhouhua-dev/remark-media-card-gatsby",
-  "version": "1.0.6",
+  "version": "1.1.0",
   "description": "",
   "license": "MIT",
   "keywords": [
@@ -74,6 +74,6 @@
     }
   },
   "dependencies": {
-    "@zhouhua-dev/remark-media-card": "^1.0.7"
+    "@zhouhua-dev/remark-media-card": "^1.1.0"
   }
 }
