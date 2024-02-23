@@ -46,7 +46,6 @@ module.exports = {
       options: {
         gatsbyRemarkPlugins: [
           '@zhouhua-dev/remark-media-card-gatsby',
-          // 其他 gatsby-plugin-mdx 插件
         ],
       },
     },
