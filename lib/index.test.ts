@@ -21,7 +21,7 @@ describe('gatsby-remark-plugin', () => {
       'author: test author',
       'artist: test artist',
       'director: test director',
-      'rate: 9.9',
+      'rating: 9.9',
       'publishDate: 2023-01-01',
       'actors: test actors',
       'introduction: test introduction',
@@ -52,7 +52,7 @@ describe('gatsby-remark-plugin', () => {
     expect(queryByText(bookDiv, '其他：支持')).toBeTruthy();
     expect(bookDiv.querySelector('.media-card-introduction')).toBeTruthy();
     expect(
-      bookDiv.querySelector('.media-card-cover')?.getAttribute('src'),
+      bookDiv.querySelector('.media-card-cover img')?.getAttribute('src'),
     ).toBe('./1.jpg');
     expect(bookDiv.querySelector('a')).toBeTruthy();
 
