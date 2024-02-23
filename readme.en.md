@@ -4,30 +4,31 @@
 
 [中文](./readme.md) | [English](./readme.en.md)
 
-本插件的功能和使用方法请参考 [remark-media-card](https://github.com/zhouhua/remark-media-card)，本项目仅仅是为了兼容 gatsby 框架而进行了一层包装。
+Please refer to [remark-media-card](https://github.com/zhouhua/remark-media-card) for the functionality and usage of this plugin. This project is just a wrapper designed to be compatible with the Gatsby framework.
 
-## 安装
+
+## Installation
 
 ```bash
 npm install @zhouhua-dev/remark-media-card-gatsby --save-dev
 ```
 
-## 使用方法
+## Usage
 
-如果使用的是 gatsby-transformer-remark 插件，在 `plugins` 数组中添加本插件：
+If you are using the gatsby-transformer-remark plugin, add this plugin to the `plugins` array:
 
 ```js
 // gatsby-config.js
 module.exports = {
-  // gatsby 配置
+  // Gatsby configuration
   plugins: [
-    // 其他插件
+    // Other plugins
     {
       resolve: 'gatsby-transformer-remark',
       options: {
         plugins: [
           '@zhouhua-dev/remark-media-card-gatsby',
-          // 其他 gatsby-transformer-remark 插件
+          // Other gatsby-transformer-remark plugins
         ],
       },
     },
@@ -35,14 +36,14 @@ module.exports = {
 };
 ```
 
-如果使用的是 gatsby-plugin-mdx 插件，在 `gatsbyRemarkPlugins` 中添加本插件：
+If you are using the gatsby-plugin-mdx plugin, add this plugin to `gatsbyRemarkPlugins`:
 
 ```js
 // gatsby-config.js
 module.exports = {
-  // gatsby 配置
+  // Gatsby configuration
   plugins: [
-    // 其他插件
+    // Other plugins
     {
       resolve: 'gatsby-plugin-mdx',
       options: {

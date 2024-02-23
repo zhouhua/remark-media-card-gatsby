@@ -1,6 +1,6 @@
 {
   "name": "@zhouhua-dev/remark-media-card-gatsby",
-  "version": "1.1.0",
+  "version": "1.1.3",
   "description": "gatsby remark plugin for media card",
   "license": "MIT",
   "repository": {
@@ -30,7 +30,7 @@
     "@testing-library/dom": "^9.3.4",
     "@tsconfig/node20": "^20.1.2",
     "@types/mdast": "^4.0.3",
-    "@types/node": "^20.11.19",
+    "@types/node": "^20.11.20",
     "@types/unist": "^3.0.2",
     "@vitest/coverage-v8": "^1.3.1",
     "@vitest/ui": "^1.3.1",
@@ -79,6 +79,6 @@
     }
   },
   "dependencies": {
-    "@zhouhua-dev/remark-media-card": "^1.1.0"
+    "@zhouhua-dev/remark-media-card": "^1.1.3"
   }
 }
