@@ -13,7 +13,7 @@
     "plugin",
     "remark",
     "remark-plugin",
-    "unified"
+    "gatsby-remark-plugin"
   ],
   "author": "zhou--hua@163.com",
   "sideEffects": false,
